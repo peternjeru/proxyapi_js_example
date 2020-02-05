@@ -1,3 +1,4 @@
+
 # Proxyapi JS Example
 
-How to use Lipa na M-Pesa Pay via ProxyAPI button
+Examples on how to use Pay via ProxyAPI's **Lipa na M-Pesa** button
