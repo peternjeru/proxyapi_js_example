@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PesaPI API</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <script src="https://staging.api.proxyapi.co.ke/pvp/src/js/jquery-3.4.1.min.js"></script>-->
+<!--    <script src="https://staging.api.proxyapi.co.ke/pvp/dist/pvp.js"></script>-->
+    <script src="http://localhost/projects/proxyapi_js/src/js/jquery-3.4.1.min.js"></script>
+    <script src="http://localhost/projects/proxyapi_js/dist/pvp.js"></script>
+</head>
+
+<body>
+<div id="pvp_checkout_button"></div>
+<script>
+
+    //if bootstrap is not available for styling
+    pvp.loadExternal();
+
+    //set up this function
+    pvp.createRequest = function()
+    {
+        const requestId = Math.round(Math.random() * 1000000);	//change to your own parameters
+        const callBackUrl = "https://peternjeru.co.ke/safdaraja/api/callback.php";	//change to your callback URL
+        const timestamp = Math.round((new Date()).getTime() / 1000);
+        const amount = 1;
+
+        return {
+            request_id: requestId,
+            request_timestamp: timestamp,
+            callback_url: encodeURIComponent(callBackUrl),
+            api_key: "0249901237-g6633pygz2h8soqp5pos",
+            amount: amount,
+            account_ref: requestId,
+            callback: function(eventObject)
+            {
+                /**
+                 * Prints out:
+                 * {
+                 *      StatusCode: 200,                    // or -1 on failure
+                 *      ResponseCode: 0,                    // or -1 on failure
+                 *      ResponseDescription: "Success",     //or other message on failure
+                 *      MerchantRequestID: "12801-2646216-1",           //or null on failure
+                 *      CheckoutRequestID: "ws_CO_040220202222099388"   //or null on failure
+                 * }
+                 */
+                console.log(eventObject);
+            }
+        };
+    };
+
+    //render the button; you can disable it till the above data is ready
+    pvp.render("#pvp_checkout_button");
+</script>
+</body>
+</html>
