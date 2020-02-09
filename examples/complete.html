@@ -1,54 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>PesaPI API</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://pvp.proxyapi.co.ke/dist/jquery-3.4.1.min.js"></script>
-    <script src="https://pvp.proxyapi.co.ke/dist/pvp.js"></script>
-</head>
+    <head>
+        <title>PesaPI API</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv='pragma' content='no-cache'>
 
-<body>
-<div id="pvp_checkout_button"></div>
-<script>
+		<script src="https://pvp.proxyapi.co.ke/dist/jquery-3.4.1.min.js"></script>
+		<script src="https://pvp.proxyapi.co.ke/dist/pvp.min.js"></script>
 
-    //if bootstrap is not available for styling
-    pvp.loadExternal();
+    </head>
 
-    //set up this function
-    pvp.createRequest = function()
-    {
-        const requestId = Math.round(Math.random() * 1000000);	//change to your own parameters
-        const callBackUrl = "https://peternjeru.co.ke/safdaraja/api/callback.php";	//change to your callback URL
-        const timestamp = Math.round((new Date()).getTime() / 1000);
-        const amount = 1;
+    <body>
+        <div id="pvp_checkout_button"></div>
+        <script>
 
-        return {
-            request_id: requestId,
-            request_timestamp: timestamp,
-            callback_url: encodeURIComponent(callBackUrl),
-            api_key: "0249901237-g6633pygz2h8soqp5pos",
-            amount: amount,
-            account_ref: requestId,
-            description: "Tight Pants",     //optional
-            callback: function(eventObject)
+            //if bootstrap is not available for styling of button
+            pvp.loadExternal();
+
+            //set up this function
+            pvp.createRequest = function()
             {
-                /**
-                 * Prints out:
-                 * {
-                 *      StatusCode: 0,                    // or -1 on failure
-                 *      StatusDescription: "Success",       //or other message on failure
-                 *      MerchantRequestID: "12801-2646216-1",           //or null on failure
-                 *      CheckoutRequestID: "ws_CO_040220202222099388"   //or null on failure
-                 * }
-                 */
-                console.log(eventObject);
-            }
-        };
-    };
+                const requestId = Math.round(Math.random() * 1000000);	//change to your own parameters
+                const callBackUrl = "https://peternjeru.co.ke/safdaraja/api/callback.php";	//change to your callback URL
+                const timestamp = Math.round((new Date()).getTime() / 1000);
+                const amount = 1;
 
-    //render the button
-    pvp.render("#pvp_checkout_button");
-</script>
-</body>
+                return {
+                    request_id: requestId,
+                    request_timestamp: timestamp,
+                    callback_url: encodeURIComponent(callBackUrl),
+                    api_key: "3818282548-7tit4xbpcr68t9j1kymr",
+                    origin: "http://localhost",
+                    amount: amount,
+                    account_ref: requestId,			//optional
+                    description: "Tight Pants",     //optional
+                    callback: function(eventObject)
+                    {
+                        /**
+                         * Prints out:
+                         * {
+                         *      StatusCode: 0,                    // or -1 on failure
+                         *      StatusDescription: "Success",       //or other message on failure
+                         *      MerchantRequestID: "12801-2646216-1",           //or null on failure
+                         *      CheckoutRequestID: "ws_CO_040220202222099388"   //or null on failure
+                         * }
+                         */
+                        console.log(eventObject);
+                    }
+                };
+            };
+
+            //render the button
+            pvp.render("#pvp_checkout_button");
+        </script>
+    </body>
 </html>
