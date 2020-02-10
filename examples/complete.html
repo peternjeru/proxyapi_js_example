@@ -10,7 +10,6 @@
 
 		<script src="https://pvp.proxyapi.co.ke/dist/jquery-3.4.1.min.js"></script>
 		<script src="https://pvp.proxyapi.co.ke/dist/pvp.min.js"></script>
-
     </head>
 
     <body>
@@ -24,15 +23,15 @@
             pvp.createRequest = function()
             {
                 const requestId = Math.round(Math.random() * 1000000);	//change to your own parameters
-                const callBackUrl = "https://peternjeru.co.ke/safdaraja/api/callback.php";	//change to your callback URL
+                const callBackUrl = "https://peternjeru.co.ke/apiclient/callback.php";	//change to your callback URL
                 const timestamp = Math.round((new Date()).getTime() / 1000);
-                const amount = 1;
+                const amount = 2;
 
                 return {
                     request_id: requestId,
                     request_timestamp: timestamp,
                     callback_url: encodeURIComponent(callBackUrl),
-                    api_key: "3818282548-7tit4xbpcr68t9j1kymr",
+                    api_key: "0592478545-yqy3e1etpatbsn90m471",
                     origin: "http://localhost",
                     amount: amount,
                     account_ref: requestId,			//optional
@@ -48,7 +47,7 @@
                          *      CheckoutRequestID: "ws_CO_040220202222099388"   //or null on failure
                          * }
                          */
-                        console.log(eventObject);
+                        console.warn(eventObject);
                     }
                 };
             };
