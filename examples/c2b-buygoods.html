@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>PesaPI API</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
+    <head>
+        <title>PesaPI API</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv='pragma' content='no-cache'>
 
-    <script src="https://pvp.proxyapi.co.ke/dist/jquery-3.4.1.min.js"></script>
-    <script src="https://pvp.proxyapi.co.ke/dist/pvp.min.js"></script>
+        <script src="https://pvp.proxyapi.co.ke/dist/jquery-3.4.1.min.js"></script>
+        <script src="https://pvp.proxyapi.co.ke/dist/pvp.min.js"></script>
 
-</head>
+    </head>
 
-<body>
-<div id="pvp_checkout_button"></div>
-<script>
+    <body>
+        <div id="pvp_checkout_button"></div>
+        <script>
 
-    //if bootstrap is not available for styling of button
-    pvp.loadExternal();
+            //if bootstrap is not available for styling of button
+            pvp.loadExternal();
 
-    //set up this function
-    pvp.createRequest = function()
-    {
-        const requestId = Math.round(Math.random() * 1000000);	//change to your own parameters
-        const callBackUrl = "https://peternjeru.co.ke/safdaraja/api/callback.php";	//change to your callback URL
-        const timestamp = Math.round((new Date()).getTime() / 1000);
-        const amount = 1;
-
-        return {
-            request_id: requestId,
-            request_timestamp: timestamp,
-            callback_url: encodeURIComponent(callBackUrl),
-            api_key: "3818282548-7tit4xbpcr68t9j1kymr",
-            origin: "http://localhost",
-            amount: amount,
-            callback: function(eventObject)
+            //set up this function
+            pvp.createRequest = function()
             {
-                /**
-                 * Prints out:
-                 * {
-                 *      StatusCode: 0,                    // or -1 on failure
-                 *      StatusDescription: "Success",       //or other message on failure
-                 *      MerchantRequestID: "12801-2646216-1",           //or null on failure
-                 *      CheckoutRequestID: "ws_CO_040220202222099388"   //or null on failure
-                 * }
-                 */
-                console.log(eventObject);
-            }
-        };
-    };
+                const requestId = Math.round(Math.random() * 1000000);	//change to your own parameters
+                const callBackUrl = "https://peternjeru.co.ke/safdaraja/api/callback.php";	//change to your callback URL
+                const timestamp = Math.round((new Date()).getTime() / 1000);
+                const amount = 1;
 
-    //render the button
-    pvp.render("#pvp_checkout_button");
-</script>
-</body>
+                return {
+                    request_id: requestId,
+                    request_timestamp: timestamp,
+                    callback_url: encodeURIComponent(callBackUrl),
+                    api_key: "3818282548-7tit4xbpcr68t9j1kymr",
+                    origin: "http://localhost",
+                    amount: amount,
+                    callback: function(eventObject)
+                    {
+                        /**
+                         * Prints out:
+                         * {
+                         *      StatusCode: 0,                    // or -1 on failure
+                         *      StatusDescription: "Success",       //or other message on failure
+                         *      MerchantRequestID: "12801-2646216-1",           //or null on failure
+                         *      CheckoutRequestID: "ws_CO_040220202222099388"   //or null on failure
+                         * }
+                         */
+                        console.log(eventObject);
+                    }
+                };
+            };
+
+            //either render the button...
+            pvp.render("#pvp_checkout_button");
+
+            //...or call this function if using a custom button
+            pvp.execute();
+        </script>
+    </body>
 </html>
