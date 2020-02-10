@@ -17,14 +17,14 @@
         <div id="pvp_checkout_button"></div>
         <script>
 
-            //if bootstrap is not available for styling of button
+            //if you wish to use the default button and bootstrap is not available for styling of button, call this method...
             pvp.loadExternal();
 
             //set up this function
             pvp.createRequest = function()
             {
                 const requestId = Math.round(Math.random() * 1000000);	//change to your own parameters
-                const callBackUrl = "https://peternjeru.co.ke/safdaraja/api/callback.php";	//change to your callback URL
+                const callBackUrl = "http://example.com/callback";	//change to your callback URL
                 const timestamp = Math.round((new Date()).getTime() / 1000);
                 const amount = 1;
 
@@ -54,7 +54,7 @@
             //either render the button...
             pvp.render("#pvp_checkout_button");
 
-            //...or call this function if using a custom button
+            //...or call this function when ready if using a custom button
             pvp.execute();
         </script>
     </body>
